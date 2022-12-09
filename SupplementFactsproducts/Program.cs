@@ -16,7 +16,7 @@ namespace SupplementFactsproducts
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ImportReceipt());
+            Application.Run(new QuanLyKhoHang());
         }
     }
 }

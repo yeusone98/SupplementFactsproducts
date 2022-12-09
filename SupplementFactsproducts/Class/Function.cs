@@ -21,9 +21,9 @@ namespace SupplementFactsproducts.Class
             if (Con.State != ConnectionState.Open)
             {
                 Con.Open();
-                MessageBox.Show("Kết nối thành công");
+                MessageBox.Show("Connect Successed");
             }
-            else MessageBox.Show("Không thể kết nối với dữ liệu");
+            else MessageBox.Show("Can not connect with database");
 
         }
         public static void Disconnect()

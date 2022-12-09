@@ -61,6 +61,7 @@
             this.toolStripReceive.Name = "toolStripReceive";
             this.toolStripReceive.Size = new System.Drawing.Size(103, 24);
             this.toolStripReceive.Text = "Good Receive";
+            this.toolStripReceive.Click += new System.EventHandler(this.toolStripReceive_Click);
             // 
             // toolStripDelivery
             // 

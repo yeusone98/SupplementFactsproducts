@@ -36,5 +36,11 @@ namespace SupplementFactsproducts
             ListOfProduct form = new ListOfProduct();
             form.ShowDialog();
         }
+
+        private void toolStripReceive_Click(object sender, EventArgs e)
+        {
+            ImportReceipt form= new ImportReceipt();
+            form.ShowDialog();
+        }
     }
 }
