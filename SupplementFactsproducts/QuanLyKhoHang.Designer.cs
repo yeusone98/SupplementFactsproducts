@@ -50,7 +50,7 @@
             this.toolStripClose});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(966, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1127, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -59,7 +59,7 @@
             this.toolStripReceive.Image = ((System.Drawing.Image)(resources.GetObject("toolStripReceive.Image")));
             this.toolStripReceive.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripReceive.Name = "toolStripReceive";
-            this.toolStripReceive.Size = new System.Drawing.Size(103, 24);
+            this.toolStripReceive.Size = new System.Drawing.Size(125, 24);
             this.toolStripReceive.Text = "Good Receive";
             this.toolStripReceive.Click += new System.EventHandler(this.toolStripReceive_Click);
             // 
@@ -68,7 +68,7 @@
             this.toolStripDelivery.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDelivery.Image")));
             this.toolStripDelivery.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDelivery.Name = "toolStripDelivery";
-            this.toolStripDelivery.Size = new System.Drawing.Size(104, 24);
+            this.toolStripDelivery.Size = new System.Drawing.Size(126, 24);
             this.toolStripDelivery.Text = "Good delivery";
             // 
             // toolStripReport
@@ -76,7 +76,7 @@
             this.toolStripReport.Image = ((System.Drawing.Image)(resources.GetObject("toolStripReport.Image")));
             this.toolStripReport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripReport.Name = "toolStripReport";
-            this.toolStripReport.Size = new System.Drawing.Size(66, 24);
+            this.toolStripReport.Size = new System.Drawing.Size(78, 24);
             this.toolStripReport.Text = "Report";
             // 
             // toolStripListOfProduct
@@ -84,7 +84,7 @@
             this.toolStripListOfProduct.Image = ((System.Drawing.Image)(resources.GetObject("toolStripListOfProduct.Image")));
             this.toolStripListOfProduct.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripListOfProduct.Name = "toolStripListOfProduct";
-            this.toolStripListOfProduct.Size = new System.Drawing.Size(108, 24);
+            this.toolStripListOfProduct.Size = new System.Drawing.Size(129, 24);
             this.toolStripListOfProduct.Text = "List of product";
             this.toolStripListOfProduct.Click += new System.EventHandler(this.toolStripListOfProduct_Click);
             // 
@@ -93,17 +93,18 @@
             this.toolStripClose.Image = ((System.Drawing.Image)(resources.GetObject("toolStripClose.Image")));
             this.toolStripClose.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripClose.Name = "toolStripClose";
-            this.toolStripClose.Size = new System.Drawing.Size(50, 24);
+            this.toolStripClose.Size = new System.Drawing.Size(57, 24);
             this.toolStripClose.Text = "Exit";
             this.toolStripClose.Click += new System.EventHandler(this.toolStripClose_Click);
             // 
             // QuanLyKhoHang
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(966, 465);
+            this.ClientSize = new System.Drawing.Size(1127, 572);
             this.Controls.Add(this.toolStrip1);
             this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("QuanLyKhoHang.IconOptions.LargeImage")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "QuanLyKhoHang";
             this.Text = "QuanLyKhoHang";
             this.Load += new System.EventHandler(this.QuanLyKhoHang_Load);
