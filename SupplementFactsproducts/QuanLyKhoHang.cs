@@ -42,5 +42,11 @@ namespace SupplementFactsproducts
             ImportReceipt form= new ImportReceipt();
             form.ShowDialog();
         }
+
+        private void toolStripCustomer_Click(object sender, EventArgs e)
+        {
+            ListOfCustomer form = new ListOfCustomer();
+            form.ShowDialog();
+        }
     }
 }
