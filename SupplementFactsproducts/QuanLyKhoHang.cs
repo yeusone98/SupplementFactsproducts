@@ -48,5 +48,11 @@ namespace SupplementFactsproducts
             ListOfCustomer form = new ListOfCustomer();
             form.ShowDialog();
         }
+
+        private void toolStripVendor_Click(object sender, EventArgs e)
+        {
+            ListOfVendor form= new ListOfVendor();
+            form.ShowDialog();
+        }
     }
 }

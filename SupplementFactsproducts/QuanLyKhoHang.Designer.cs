@@ -34,8 +34,9 @@
             this.toolStripDelivery = new System.Windows.Forms.ToolStripButton();
             this.toolStripReport = new System.Windows.Forms.ToolStripButton();
             this.toolStripListOfProduct = new System.Windows.Forms.ToolStripButton();
-            this.toolStripClose = new System.Windows.Forms.ToolStripButton();
             this.toolStripCustomer = new System.Windows.Forms.ToolStripButton();
+            this.toolStripClose = new System.Windows.Forms.ToolStripButton();
+            this.toolStripVendor = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +50,7 @@
             this.toolStripReport,
             this.toolStripListOfProduct,
             this.toolStripCustomer,
+            this.toolStripVendor,
             this.toolStripClose});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -90,6 +92,15 @@
             this.toolStripListOfProduct.Text = "List of product";
             this.toolStripListOfProduct.Click += new System.EventHandler(this.toolStripListOfProduct_Click);
             // 
+            // toolStripCustomer
+            // 
+            this.toolStripCustomer.Image = ((System.Drawing.Image)(resources.GetObject("toolStripCustomer.Image")));
+            this.toolStripCustomer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripCustomer.Name = "toolStripCustomer";
+            this.toolStripCustomer.Size = new System.Drawing.Size(83, 24);
+            this.toolStripCustomer.Text = "Customer";
+            this.toolStripCustomer.Click += new System.EventHandler(this.toolStripCustomer_Click);
+            // 
             // toolStripClose
             // 
             this.toolStripClose.Image = ((System.Drawing.Image)(resources.GetObject("toolStripClose.Image")));
@@ -99,14 +110,14 @@
             this.toolStripClose.Text = "Exit";
             this.toolStripClose.Click += new System.EventHandler(this.toolStripClose_Click);
             // 
-            // toolStripCustomer
+            // toolStripVendor
             // 
-            this.toolStripCustomer.Image = ((System.Drawing.Image)(resources.GetObject("toolStripCustomer.Image")));
-            this.toolStripCustomer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripCustomer.Name = "toolStripCustomer";
-            this.toolStripCustomer.Size = new System.Drawing.Size(83, 24);
-            this.toolStripCustomer.Text = "Customer";
-            this.toolStripCustomer.Click += new System.EventHandler(this.toolStripCustomer_Click);
+            this.toolStripVendor.Image = ((System.Drawing.Image)(resources.GetObject("toolStripVendor.Image")));
+            this.toolStripVendor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripVendor.Name = "toolStripVendor";
+            this.toolStripVendor.Size = new System.Drawing.Size(68, 24);
+            this.toolStripVendor.Text = "Vendor";
+            this.toolStripVendor.Click += new System.EventHandler(this.toolStripVendor_Click);
             // 
             // QuanLyKhoHang
             // 
@@ -134,5 +145,6 @@
         private System.Windows.Forms.ToolStripButton toolStripListOfProduct;
         private System.Windows.Forms.ToolStripButton toolStripClose;
         private System.Windows.Forms.ToolStripButton toolStripCustomer;
+        private System.Windows.Forms.ToolStripButton toolStripVendor;
     }
 }
