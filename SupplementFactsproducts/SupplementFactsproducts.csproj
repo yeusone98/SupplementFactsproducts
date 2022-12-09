@@ -101,6 +101,12 @@
     <Compile Include="QuanLyKhoHang.Designer.cs">
       <DependentUpon>QuanLyKhoHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReceiptDeliveryList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReceiptDeliveryList.Designer.cs">
+      <DependentUpon>ReceiptDeliveryList.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReceiptImportList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </Compile>
     <EmbeddedResource Include="QuanLyKhoHang.resx">
       <DependentUpon>QuanLyKhoHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceiptDeliveryList.resx">
+      <DependentUpon>ReceiptDeliveryList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReceiptImportList.resx">
       <DependentUpon>ReceiptImportList.cs</DependentUpon>
