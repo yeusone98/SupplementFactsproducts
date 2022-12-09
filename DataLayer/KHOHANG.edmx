@@ -1,0 +1,542 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KHOHANG.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_ChungTu">
+          <Key>
+            <PropertyRef Name="Khoa" />
+          </Key>
+          <Property Name="Khoa" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SoChungTu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ngay" Type="datetime" />
+          <Property Name="SoChungTu2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ngay2" Type="datetime" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="TongTien" Type="float" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
+          <Property Name="MaCty" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaDvi" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaDvi2" Type="nvarchar" MaxLength="50" />
+          <Property Name="TrangThai" Type="bit" />
+          <Property Name="CREATED_DATE" Type="datetime" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="UPDATED_DATE" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="int" />
+          <Property Name="DELETE_DATE" Type="datetime" />
+          <Property Name="DELETE_BY" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_ChungTu_ChiTiet">
+          <Key>
+            <PropertyRef Name="KHOACT" />
+          </Key>
+          <Property Name="KHOACT" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="KHOA" Type="uniqueidentifier" />
+          <Property Name="BARCODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="Soluong" Type="int" />
+          <Property Name="DONGIA" Type="float" />
+          <Property Name="THANHTIEN" Type="float" />
+          <Property Name="NGAY" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tb_CongTy">
+          <Key>
+            <PropertyRef Name="MaCty" />
+          </Key>
+          <Property Name="MaCty" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenCty" Type="nvarchar" MaxLength="200" />
+          <Property Name="Diachi" Type="nvarchar" MaxLength="200" />
+          <Property Name="Dienthoai" Type="nvarchar" MaxLength="200" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="Disabled" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'QUANLY_KHOHANG.dbo.tb_DonVi' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tb_DonVi">
+          <Property Name="MaDvi" Type="nchar" MaxLength="10" />
+          <Property Name="TenCty" Type="nvarchar" MaxLength="200" />
+          <Property Name="Diachi" Type="nvarchar" MaxLength="200" />
+          <Property Name="Dienthoai" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+        </EntityType>-->
+        <EntityType Name="tb_DonViTinh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'QUANLY_KHOHANG.dbo.tb_HangHoa' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tb_HangHoa">
+          <Property Name="BARCODE" Type="nvarchar" MaxLength="13" />
+          <Property Name="TenHangHoa" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenTat" Type="nvarchar" MaxLength="50" />
+          <Property Name="DVT" Type="nvarchar" MaxLength="50" />
+          <Property Name="DonGia" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaNCC" Type="int" />
+          <Property Name="XuatXu" Type="int" />
+          <Property Name="CREATED_DATE" Type="datetime" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="Disabled" Type="int" />
+        </EntityType>-->
+        <EntityType Name="tb_NhaCungCap">
+          <Key>
+            <PropertyRef Name="MaNCC" />
+          </Key>
+          <Property Name="MaNCC" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenNCC" Type="nvarchar" MaxLength="200" />
+          <Property Name="Diachi" Type="nvarchar" MaxLength="200" />
+          <Property Name="Dienthoai" Type="nvarchar" MaxLength="50" />
+          <Property Name="emaill" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tb_SYS_Function">
+          <Key>
+            <PropertyRef Name="FUNC_CODE" />
+            <PropertyRef Name="SORT" />
+          </Key>
+          <Property Name="FUNC_CODE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SORT" Type="int" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="200" />
+          <Property Name="ISGROUP" Type="bit" />
+          <Property Name="PARENT" Type="varchar" MaxLength="50" />
+          <Property Name="MENU" Type="bit" />
+          <Property Name="TIPS" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tb_SYS_GROUP">
+          <Key>
+            <PropertyRef Name="GROUP" />
+            <PropertyRef Name="MEMBER" />
+          </Key>
+          <Property Name="GROUP" Type="int" Nullable="false" />
+          <Property Name="MEMBER" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_SYS_REPORT">
+          <Key>
+            <PropertyRef Name="REP_CODE" />
+          </Key>
+          <Property Name="REP_CODE" Type="int" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="REP_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="VISIBLED" Type="bit" />
+          <Property Name="TUNGAY" Type="bit" />
+          <Property Name="THANGNAM" Type="bit" />
+          <Property Name="MACTY" Type="bit" />
+          <Property Name="MADVI" Type="bit" />
+        </EntityType>
+        <EntityType Name="tb_SYS_RIGHT">
+          <Key>
+            <PropertyRef Name="FUNC_CODE" />
+            <PropertyRef Name="IDUSER" />
+          </Key>
+          <Property Name="FUNC_CODE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDUSER" Type="int" Nullable="false" />
+          <Property Name="USER_RIGHT" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_SYS_RIGHT_REP">
+          <Key>
+            <PropertyRef Name="REP_CODE" />
+            <PropertyRef Name="IDUSER" />
+          </Key>
+          <Property Name="REP_CODE" Type="int" Nullable="false" />
+          <Property Name="IDUSER" Type="int" Nullable="false" />
+          <Property Name="USER_RIGHT" Type="bit" />
+        </EntityType>
+        <EntityType Name="tb_SYS_USER">
+          <Key>
+            <PropertyRef Name="IDUSER" />
+          </Key>
+          <Property Name="IDUSER" Type="int" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="50" />
+          <Property Name="PASSWORD" Type="varbinary" MaxLength="50" />
+          <Property Name="FULLNAME" Type="nvarchar" MaxLength="250" />
+          <Property Name="MACTY" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MADVI" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LAST_PWD_CHANGED" Type="datetime" />
+          <Property Name="DISABLED" Type="bit" />
+          <Property Name="ISGROUP" Type="bit" />
+        </EntityType>
+        <EntityType Name="tb_TonKho">
+          <Key>
+            <PropertyRef Name="KHOA" />
+          </Key>
+          <Property Name="KHOA" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NAMKY" Type="int" />
+          <Property Name="NAM" Type="int" />
+          <Property Name="KY" Type="int" />
+          <Property Name="MaDvi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Luong_Dau" Type="int" />
+          <Property Name="Luong_Nhap" Type="int" />
+          <Property Name="Luong_Xuat" Type="int" />
+          <Property Name="Luong_Cuoi" Type="int" />
+          <Property Name="THANHTIEN" Type="float" />
+          <Property Name="Ngay" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'QUANLY_KHOHANG.dbo.tb_XuatXu' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tb_XuatXu">
+          <Property Name="MaXuatXu" Type="nchar" MaxLength="10" />
+          <Property Name="TenSanPham" Type="nvarchar" MaxLength="200" />
+        </EntityType>-->
+        <EntityContainer Name="KHOHANGStoreContainer">
+          <EntitySet Name="tb_ChungTu" EntityType="Self.tb_ChungTu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_ChungTu_ChiTiet" EntityType="Self.tb_ChungTu_ChiTiet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_CongTy" EntityType="Self.tb_CongTy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_DonViTinh" EntityType="Self.tb_DonViTinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_NhaCungCap" EntityType="Self.tb_NhaCungCap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_SYS_Function" EntityType="Self.tb_SYS_Function" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_SYS_GROUP" EntityType="Self.tb_SYS_GROUP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_SYS_REPORT" EntityType="Self.tb_SYS_REPORT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_SYS_RIGHT" EntityType="Self.tb_SYS_RIGHT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_SYS_RIGHT_REP" EntityType="Self.tb_SYS_RIGHT_REP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_SYS_USER" EntityType="Self.tb_SYS_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_TonKho" EntityType="Self.tb_TonKho" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KHOHANG" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_ChungTu">
+          <Key>
+            <PropertyRef Name="Khoa" />
+          </Key>
+          <Property Name="Khoa" Type="Guid" Nullable="false" />
+          <Property Name="SoChungTu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ngay" Type="DateTime" Precision="3" />
+          <Property Name="SoChungTu2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ngay2" Type="DateTime" Precision="3" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="TongTien" Type="Double" />
+          <Property Name="GhiChu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MaCty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaDvi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaDvi2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThai" Type="Boolean" />
+          <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" />
+          <Property Name="DELETE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="DELETE_BY" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tb_ChungTu_ChiTiet">
+          <Key>
+            <PropertyRef Name="KHOACT" />
+          </Key>
+          <Property Name="KHOACT" Type="Guid" Nullable="false" />
+          <Property Name="KHOA" Type="Guid" />
+          <Property Name="BARCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Soluong" Type="Int32" />
+          <Property Name="DONGIA" Type="Double" />
+          <Property Name="THANHTIEN" Type="Double" />
+          <Property Name="NGAY" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tb_CongTy">
+          <Key>
+            <PropertyRef Name="MaCty" />
+          </Key>
+          <Property Name="MaCty" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TenCty" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Diachi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Dienthoai" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Disabled" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tb_DonViTinh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tb_NhaCungCap">
+          <Key>
+            <PropertyRef Name="MaNCC" />
+          </Key>
+          <Property Name="MaNCC" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TenNCC" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Diachi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Dienthoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emaill" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tb_SYS_Function">
+          <Key>
+            <PropertyRef Name="FUNC_CODE" />
+            <PropertyRef Name="SORT" />
+          </Key>
+          <Property Name="FUNC_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SORT" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ISGROUP" Type="Boolean" />
+          <Property Name="PARENT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MENU" Type="Boolean" />
+          <Property Name="TIPS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tb_SYS_GROUP">
+          <Key>
+            <PropertyRef Name="GROUP" />
+            <PropertyRef Name="MEMBER" />
+          </Key>
+          <Property Name="GROUP" Type="Int32" Nullable="false" />
+          <Property Name="MEMBER" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_SYS_REPORT">
+          <Key>
+            <PropertyRef Name="REP_CODE" />
+          </Key>
+          <Property Name="REP_CODE" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REP_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VISIBLED" Type="Boolean" />
+          <Property Name="TUNGAY" Type="Boolean" />
+          <Property Name="THANGNAM" Type="Boolean" />
+          <Property Name="MACTY" Type="Boolean" />
+          <Property Name="MADVI" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tb_SYS_RIGHT">
+          <Key>
+            <PropertyRef Name="FUNC_CODE" />
+            <PropertyRef Name="IDUSER" />
+          </Key>
+          <Property Name="FUNC_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDUSER" Type="Int32" Nullable="false" />
+          <Property Name="USER_RIGHT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tb_SYS_RIGHT_REP">
+          <Key>
+            <PropertyRef Name="REP_CODE" />
+            <PropertyRef Name="IDUSER" />
+          </Key>
+          <Property Name="REP_CODE" Type="Int32" Nullable="false" />
+          <Property Name="IDUSER" Type="Int32" Nullable="false" />
+          <Property Name="USER_RIGHT" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tb_SYS_USER">
+          <Key>
+            <PropertyRef Name="IDUSER" />
+          </Key>
+          <Property Name="IDUSER" Type="Int32" Nullable="false" />
+          <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="FULLNAME" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MACTY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MADVI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LAST_PWD_CHANGED" Type="DateTime" Precision="3" />
+          <Property Name="DISABLED" Type="Boolean" />
+          <Property Name="ISGROUP" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tb_TonKho">
+          <Key>
+            <PropertyRef Name="KHOA" />
+          </Key>
+          <Property Name="KHOA" Type="Guid" Nullable="false" />
+          <Property Name="NAMKY" Type="Int32" />
+          <Property Name="NAM" Type="Int32" />
+          <Property Name="KY" Type="Int32" />
+          <Property Name="MaDvi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Luong_Dau" Type="Int32" />
+          <Property Name="Luong_Nhap" Type="Int32" />
+          <Property Name="Luong_Xuat" Type="Int32" />
+          <Property Name="Luong_Cuoi" Type="Int32" />
+          <Property Name="THANHTIEN" Type="Double" />
+          <Property Name="Ngay" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_ChungTu" EntityType="Self.tb_ChungTu" />
+          <EntitySet Name="tb_ChungTu_ChiTiet" EntityType="Self.tb_ChungTu_ChiTiet" />
+          <EntitySet Name="tb_CongTy" EntityType="Self.tb_CongTy" />
+          <EntitySet Name="tb_DonViTinh" EntityType="Self.tb_DonViTinh" />
+          <EntitySet Name="tb_NhaCungCap" EntityType="Self.tb_NhaCungCap" />
+          <EntitySet Name="tb_SYS_Function" EntityType="Self.tb_SYS_Function" />
+          <EntitySet Name="tb_SYS_GROUP" EntityType="Self.tb_SYS_GROUP" />
+          <EntitySet Name="tb_SYS_REPORT" EntityType="Self.tb_SYS_REPORT" />
+          <EntitySet Name="tb_SYS_RIGHT" EntityType="Self.tb_SYS_RIGHT" />
+          <EntitySet Name="tb_SYS_RIGHT_REP" EntityType="Self.tb_SYS_RIGHT_REP" />
+          <EntitySet Name="tb_SYS_USER" EntityType="Self.tb_SYS_USER" />
+          <EntitySet Name="tb_TonKho" EntityType="Self.tb_TonKho" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KHOHANGStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="tb_ChungTu">
+            <EntityTypeMapping TypeName="KHOHANG.tb_ChungTu">
+              <MappingFragment StoreEntitySet="tb_ChungTu">
+                <ScalarProperty Name="Khoa" ColumnName="Khoa" />
+                <ScalarProperty Name="SoChungTu" ColumnName="SoChungTu" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="SoChungTu2" ColumnName="SoChungTu2" />
+                <ScalarProperty Name="Ngay2" ColumnName="Ngay2" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="MaCty" ColumnName="MaCty" />
+                <ScalarProperty Name="MaDvi" ColumnName="MaDvi" />
+                <ScalarProperty Name="MaDvi2" ColumnName="MaDvi2" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="DELETE_DATE" ColumnName="DELETE_DATE" />
+                <ScalarProperty Name="DELETE_BY" ColumnName="DELETE_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_ChungTu_ChiTiet">
+            <EntityTypeMapping TypeName="KHOHANG.tb_ChungTu_ChiTiet">
+              <MappingFragment StoreEntitySet="tb_ChungTu_ChiTiet">
+                <ScalarProperty Name="KHOACT" ColumnName="KHOACT" />
+                <ScalarProperty Name="KHOA" ColumnName="KHOA" />
+                <ScalarProperty Name="BARCODE" ColumnName="BARCODE" />
+                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+                <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+                <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
+                <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_CongTy">
+            <EntityTypeMapping TypeName="KHOHANG.tb_CongTy">
+              <MappingFragment StoreEntitySet="tb_CongTy">
+                <ScalarProperty Name="MaCty" ColumnName="MaCty" />
+                <ScalarProperty Name="TenCty" ColumnName="TenCty" />
+                <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+                <ScalarProperty Name="Dienthoai" ColumnName="Dienthoai" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_DonViTinh">
+            <EntityTypeMapping TypeName="KHOHANG.tb_DonViTinh">
+              <MappingFragment StoreEntitySet="tb_DonViTinh">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_NhaCungCap">
+            <EntityTypeMapping TypeName="KHOHANG.tb_NhaCungCap">
+              <MappingFragment StoreEntitySet="tb_NhaCungCap">
+                <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
+                <ScalarProperty Name="TenNCC" ColumnName="TenNCC" />
+                <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+                <ScalarProperty Name="Dienthoai" ColumnName="Dienthoai" />
+                <ScalarProperty Name="emaill" ColumnName="emaill" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_SYS_Function">
+            <EntityTypeMapping TypeName="KHOHANG.tb_SYS_Function">
+              <MappingFragment StoreEntitySet="tb_SYS_Function">
+                <ScalarProperty Name="FUNC_CODE" ColumnName="FUNC_CODE" />
+                <ScalarProperty Name="SORT" ColumnName="SORT" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ISGROUP" ColumnName="ISGROUP" />
+                <ScalarProperty Name="PARENT" ColumnName="PARENT" />
+                <ScalarProperty Name="MENU" ColumnName="MENU" />
+                <ScalarProperty Name="TIPS" ColumnName="TIPS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_SYS_GROUP">
+            <EntityTypeMapping TypeName="KHOHANG.tb_SYS_GROUP">
+              <MappingFragment StoreEntitySet="tb_SYS_GROUP">
+                <ScalarProperty Name="GROUP" ColumnName="GROUP" />
+                <ScalarProperty Name="MEMBER" ColumnName="MEMBER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_SYS_REPORT">
+            <EntityTypeMapping TypeName="KHOHANG.tb_SYS_REPORT">
+              <MappingFragment StoreEntitySet="tb_SYS_REPORT">
+                <ScalarProperty Name="REP_CODE" ColumnName="REP_CODE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="REP_NAME" ColumnName="REP_NAME" />
+                <ScalarProperty Name="VISIBLED" ColumnName="VISIBLED" />
+                <ScalarProperty Name="TUNGAY" ColumnName="TUNGAY" />
+                <ScalarProperty Name="THANGNAM" ColumnName="THANGNAM" />
+                <ScalarProperty Name="MACTY" ColumnName="MACTY" />
+                <ScalarProperty Name="MADVI" ColumnName="MADVI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_SYS_RIGHT">
+            <EntityTypeMapping TypeName="KHOHANG.tb_SYS_RIGHT">
+              <MappingFragment StoreEntitySet="tb_SYS_RIGHT">
+                <ScalarProperty Name="FUNC_CODE" ColumnName="FUNC_CODE" />
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="USER_RIGHT" ColumnName="USER_RIGHT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_SYS_RIGHT_REP">
+            <EntityTypeMapping TypeName="KHOHANG.tb_SYS_RIGHT_REP">
+              <MappingFragment StoreEntitySet="tb_SYS_RIGHT_REP">
+                <ScalarProperty Name="REP_CODE" ColumnName="REP_CODE" />
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="USER_RIGHT" ColumnName="USER_RIGHT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_SYS_USER">
+            <EntityTypeMapping TypeName="KHOHANG.tb_SYS_USER">
+              <MappingFragment StoreEntitySet="tb_SYS_USER">
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+                <ScalarProperty Name="MACTY" ColumnName="MACTY" />
+                <ScalarProperty Name="MADVI" ColumnName="MADVI" />
+                <ScalarProperty Name="LAST_PWD_CHANGED" ColumnName="LAST_PWD_CHANGED" />
+                <ScalarProperty Name="DISABLED" ColumnName="DISABLED" />
+                <ScalarProperty Name="ISGROUP" ColumnName="ISGROUP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_TonKho">
+            <EntityTypeMapping TypeName="KHOHANG.tb_TonKho">
+              <MappingFragment StoreEntitySet="tb_TonKho">
+                <ScalarProperty Name="KHOA" ColumnName="KHOA" />
+                <ScalarProperty Name="NAMKY" ColumnName="NAMKY" />
+                <ScalarProperty Name="NAM" ColumnName="NAM" />
+                <ScalarProperty Name="KY" ColumnName="KY" />
+                <ScalarProperty Name="MaDvi" ColumnName="MaDvi" />
+                <ScalarProperty Name="Luong_Dau" ColumnName="Luong_Dau" />
+                <ScalarProperty Name="Luong_Nhap" ColumnName="Luong_Nhap" />
+                <ScalarProperty Name="Luong_Xuat" ColumnName="Luong_Xuat" />
+                <ScalarProperty Name="Luong_Cuoi" ColumnName="Luong_Cuoi" />
+                <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
