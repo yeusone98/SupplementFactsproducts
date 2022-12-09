@@ -69,6 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Function.cs" />
+    <Compile Include="ImportReceipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportReceipt.Designer.cs">
+      <DependentUpon>ImportReceipt.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListOfProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,9 @@
     <Compile Include="QuanLyKhoHang.Designer.cs">
       <DependentUpon>QuanLyKhoHang.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ImportReceipt.resx">
+      <DependentUpon>ImportReceipt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListOfProduct.resx">
       <DependentUpon>ListOfProduct.cs</DependentUpon>
     </EmbeddedResource>
