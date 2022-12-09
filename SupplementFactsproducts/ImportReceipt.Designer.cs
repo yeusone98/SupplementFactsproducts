@@ -106,7 +106,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 24);
             this.comboBox1.TabIndex = 1;
-            this.comboBox1.Text = "z";
             // 
             // label1
             // 
@@ -197,7 +196,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(458, 0);
+            this.label2.Location = new System.Drawing.Point(429, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(163, 28);
             this.label2.TabIndex = 0;

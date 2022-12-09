@@ -81,6 +81,12 @@
     <Compile Include="ListOfProduct.Designer.cs">
       <DependentUpon>ListOfProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductDelivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductDelivery.Designer.cs">
+      <DependentUpon>ProductDelivery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuanLyKhoHang.cs">
@@ -89,11 +95,20 @@
     <Compile Include="QuanLyKhoHang.Designer.cs">
       <DependentUpon>QuanLyKhoHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReceiptImportList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReceiptImportList.Designer.cs">
+      <DependentUpon>ReceiptImportList.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ImportReceipt.resx">
       <DependentUpon>ImportReceipt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListOfProduct.resx">
       <DependentUpon>ListOfProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductDelivery.resx">
+      <DependentUpon>ProductDelivery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -106,6 +121,9 @@
     </Compile>
     <EmbeddedResource Include="QuanLyKhoHang.resx">
       <DependentUpon>QuanLyKhoHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceiptImportList.resx">
+      <DependentUpon>ReceiptImportList.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
