@@ -139,7 +139,7 @@ namespace SupplementFactsproducts
                 comboProduct.Focus();
                 return;
             }
-            sl = Convert.ToDouble(Functions.GetFieldValues("SELECT importUnit_Price FROM Product WHERE id_Product = N'" + comboProduct.SelectedValue + "'"));
+            sl = Convert.ToDouble(Functions.GetFieldValues("SELECT numberOf_Product FROM Product WHERE id_Product = N'" + comboProduct.SelectedValue + "'"));
             sql = "INSERT INTO DETAILS_IMPORT(id_InvoiceImport,id_Product,numberOf_Product,intomoney, importUnit_Price) VALUES(N'" 
                 + txt_InvoiceId.Text.Trim() + "',N'" + comboProduct.SelectedValue + "'," + txtNumberOfProduct.Text + "," 
                 + txtIntoMoney.Text  + "," + txtImportUnitPrice.Text  + ")";
@@ -151,7 +151,7 @@ namespace SupplementFactsproducts
             Functions.RunSQL(sql);
 
             // Cập nhật lại tổng tiền cho hóa đơn bán
-            tong = Convert.ToDouble((Functions.GetFieldValues("SELECT total FROM Invoice_Import WHERE id_InvoiceImport = N'" + txt_InvoiceId.Text + "'")));
+            tong = Convert.ToDouble((Functions.GetFieldValues("SELECT intomoney FROM Details_Import WHERE id_InvoiceImport = N'" + txt_InvoiceId.Text + "'")));
             Tongmoi = tong + Convert.ToDouble(txtTotalMoney.Text);
             sql = "UPDATE Invoice_Import SET total =" + Tongmoi + " WHERE id_InvoiceImport = N'" + txt_InvoiceId.Text + "'";
             Functions.RunSQL(sql);

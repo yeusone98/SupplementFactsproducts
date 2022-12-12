@@ -220,15 +220,6 @@ namespace SupplementFactsproducts
             exRange.Range["C2:E2"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignCenter;
             exRange.Range["C2:E2"].Value = "Invoice Delivery";
             // Biểu diễn thông tin chung của hóa đơn bán
-            sql = "SELECT a.id_InvoiceDelivery, a.DateOfInvoiceDelivery, a.total_delivery, b.name_Customer FROM Invoice_Delivery AS a, CUSTOMER AS b WHERE a.id_InvoiceDelivery = N'" + txtInvoiceDeliveryId.Text + "' AND a.id_Customer = b.id_Customer";
-            Details_Delivery = Functions.GetDataToTable(sql);
-            exRange.Range["B6:C9"].Font.Size = 12;
-            exRange.Range["B6:B6"].Value = "ID Invoice Delivery:";
-            exRange.Range["C6:E6"].MergeCells = true;
-            exRange.Range["C6:E6"].Value = Details_Delivery.Rows[0][0].ToString();
-            exRange.Range["B7:B7"].Value = "Customer:";
-            exRange.Range["C7:E7"].MergeCells = true;
-            exRange.Range["C7:E7"].Value = Details_Delivery.Rows[0][3].ToString();
             //Lấy thông tin các mặt hàng
             sql = "SELECT b.name_Product, a.numberOf_Product, b.unitSelling_Price, a.intomoney " +
                   "FROM DETAILS_Delivery AS a , Product AS b WHERE a.id_InvoiceDelivery = N'" +
@@ -242,7 +233,7 @@ namespace SupplementFactsproducts
             exRange.Range["B11:B11"].Value = "Product Name";
             exRange.Range["C11:C11"].Value = "Number of Product";
             exRange.Range["D11:D11"].Value = "Price";
-            exRange.Range["F11:F11"].Value = "Into Money";
+            exRange.Range["E11:E11"].Value = "Into Money";
             for (hang = 0; hang < Product.Rows.Count; hang++)
             {
                 //Điền số thứ tự vào cột 1 từ dòng 12
@@ -251,7 +242,7 @@ namespace SupplementFactsproducts
                 //Điền thông tin hàng từ cột thứ 2, dòng 12
                 {
                     exSheet.Cells[cot + 2][hang + 12] = Product.Rows[hang][cot].ToString();
-                    if (cot == 3) exSheet.Cells[cot + 2][hang + 12] = Product.Rows[hang][cot].ToString() + "%";
+                    if (cot == 3) exSheet.Cells[cot + 2][hang + 12] = Product.Rows[hang][cot].ToString();
                 }
             }
             exRange = exSheet.Cells[cot][hang + 14];
@@ -259,7 +250,6 @@ namespace SupplementFactsproducts
             exRange.Value2 = "Total:";
             exRange = exSheet.Cells[cot + 1][hang + 14];
             exRange.Font.Bold = true;
-            exRange.Value2 = Details_Delivery.Rows[0][2].ToString();
             exRange = exSheet.Cells[1][hang + 15]; //Ô A1 
             exRange.Range["A1:F1"].MergeCells = true;
             exRange.Range["A1:F1"].Font.Bold = true;
@@ -269,14 +259,12 @@ namespace SupplementFactsproducts
             exRange.Range["A1:C1"].MergeCells = true;
             exRange.Range["A1:C1"].Font.Italic = true;
             exRange.Range["A1:C1"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignCenter;
-            DateTime d = Convert.ToDateTime(Details_Delivery.Rows[0][1]);
-            exRange.Range["A1:C1"].Value = "Hồ Chí Mình, ngày " + d.Day + " tháng " + d.Month + " năm " + d.Year;
+     
             exRange.Range["A2:C2"].MergeCells = true;
             exRange.Range["A2:C2"].Font.Italic = true;
             exRange.Range["A6:C6"].MergeCells = true;
             exRange.Range["A6:C6"].Font.Italic = true;
             exRange.Range["A6:C6"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignCenter;
-            exRange.Range["A6:C6"].Value = Details_Delivery.Rows[0][6];
             exSheet.Name = "Invoice Delivery";
             exApp.Visible = true;
         }
@@ -296,6 +284,7 @@ namespace SupplementFactsproducts
             string sql;
             double sl, SLcon, tong, Tongmoi;
             sql = "SELECT id_InvoiceDelivery FROM Invoice_Delivery WHERE id_InvoiceDelivery=N'" + txtInvoiceDeliveryId.Text + "'";
+            string sqltest = sql;
             if (Functions.CheckKey(sql))
             {
                 // Mã hóa đơn chưa có, tiến hành lưu các thông tin chung
@@ -306,7 +295,7 @@ namespace SupplementFactsproducts
                     comboCustomerId.Focus();
                     return;
                 }
-                sql = "INSERT INTO id_InvoiceDelivery(id_InvoiceDelivery, id_Customer, dateOfInvoiceDelivery, total_delivery) VALUES (N'" + txtInvoiceDeliveryId.Text.Trim() + "','" +
+                sql = "INSERT INTO Invoice_Delivery(id_InvoiceDelivery, id_Customer, dateOfInvoiceDelivery, total_delivery) VALUES (N'" + txtInvoiceDeliveryId.Text.Trim() + "','" +
                         DateOfProductDelivery.Value + "',N'" + comboCustomerId.SelectedValue + "',N'" + txtTotal.Text + ")";
                 Functions.RunSQL(sql);
             }
@@ -332,7 +321,7 @@ namespace SupplementFactsproducts
                 comboProduct.Focus();
                 return;
             }
-            sl = Convert.ToDouble(Functions.GetFieldValues("SELECT unitSelling_Price FROM Product WHERE id_Product = N'" + comboProduct.SelectedValue + "'"));
+            sl = Convert.ToDouble(Functions.GetFieldValues("SELECT numberOf_Product FROM Product WHERE id_Product = N'" + comboProduct.SelectedValue + "'"));
             sql = "INSERT INTO DETAILS_Delivery(id_InvoiceDelivery,id_Product,numberOf_Product,intomoney, unitSelling_Price) VALUES(N'"
                 + txtInvoiceDeliveryId.Text.Trim() + "',N'" + comboProduct.SelectedValue + "'," + txtNumberOfProduct.Text + ","
                 + txtIntoMoney.Text + "," + txtSellingPrice.Text + ")";
@@ -344,7 +333,7 @@ namespace SupplementFactsproducts
             Functions.RunSQL(sql);
 
             // Cập nhật lại tổng tiền cho hóa đơn bán
-            tong = Convert.ToDouble((Functions.GetFieldValues("SELECT total_delivery FROM Invoice_Delivery WHERE id_InvoiceDelivery = N'" + txtInvoiceDeliveryId.Text + "'")));
+            tong = Convert.ToDouble((Functions.GetFieldValues("SELECT intomoney FROM Details_Delivery WHERE id_InvoiceDelivery = N'" + txtInvoiceDeliveryId.Text + "'")));
             Tongmoi = tong + Convert.ToDouble(txtTotal.Text);
             sql = "UPDATE Invoice_Delivery SET total_delivery =" + Tongmoi + " WHERE id_InvoiceDelivery = N'" + txtInvoiceDeliveryId.Text + "'";
             Functions.RunSQL(sql);
