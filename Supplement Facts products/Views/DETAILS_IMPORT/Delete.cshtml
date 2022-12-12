@@ -1,0 +1,56 @@
+﻿@model Supplement_Facts_products.Models.DETAILS_IMPORT
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DETAILS_IMPORT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_Product)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_Product)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberOf_Product)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOf_Product)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.intomoney)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.intomoney)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.importUnit_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.importUnit_Price)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

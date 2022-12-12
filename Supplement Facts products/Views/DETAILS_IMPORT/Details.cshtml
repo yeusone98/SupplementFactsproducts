@@ -1,0 +1,50 @@
+﻿@model Supplement_Facts_products.Models.DETAILS_IMPORT
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DETAILS_IMPORT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_Product)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_Product)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberOf_Product)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOf_Product)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.intomoney)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.intomoney)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.importUnit_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.importUnit_Price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_InvoiceImport }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

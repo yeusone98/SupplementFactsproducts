@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Supplement_Facts_products.Models.vendor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name_vendor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address_vendor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone_vendor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name_vendor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address_vendor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone_vendor)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_vendor }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_vendor }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_vendor })
+        </td>
+    </tr>
+}
+
+</table>

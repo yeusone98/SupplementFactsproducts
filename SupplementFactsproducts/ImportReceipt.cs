@@ -17,7 +17,7 @@ namespace SupplementFactsproducts
     
     public partial class ImportReceipt : DevExpress.XtraEditors.XtraForm
     {
-        DataTable ImportProduct;
+        DataTable Invoice_Import;
         public ImportReceipt()
         {
             InitializeComponent();
@@ -29,17 +29,14 @@ namespace SupplementFactsproducts
             btnSave.Enabled = false;
             btnDelete.Enabled = false;
             btnPrint.Enabled = false;
-            id_receipt.ReadOnly = true;
-            vendorName.ReadOnly = true;
-            productName.ReadOnly = true;
-            unitCost.ReadOnly = true;
             totalMoney.ReadOnly = true;
             totalMoney.Text = "0";
-            Functions.FillCombo("SELECT id_vendor, name_vendor FROM vendor", comboVendor, "id_vendor", "name_vendor");
+            string str = "SELECT id_vendor, name_vendor FROM vendor";
+            Functions.FillCombo(str, comboVendor, "id_vendor", "name_vendor");
             comboVendor.SelectedIndex = -1;
-            Functions.FillCombo("SELECT id_Product, name_Product FROM Product", comboProduct, "id_Product", "name_Product");
+            string str2 = "SELECT id_Product, name_Product FROM Product";
+            Functions.FillCombo(str2, comboProduct, "id_Product", "name_Product");
             comboProduct.SelectedIndex = -1;
-            //Hiển thị thông tin của một hóa đơn được gọi từ form tìm kiếm
             if (id_receipt.Text != "")
             {
                 LoadInfoHoaDon();
@@ -54,20 +51,18 @@ namespace SupplementFactsproducts
         {
             string sql;
             sql = "SELECT a.id_Product, b.name_Product, a.numberOf_Product, b.unitSelling_Price,a.intomoney FROM Details_Import AS a, Product AS b WHERE a.id_InvoiceImport = N'" + id_receipt.Text + "' AND a.id_Product = b.id_Product";
-            ImportProduct = Functions.GetDataToTable(sql);
-            dgvImportReceipt.DataSource = ImportProduct;
+            Invoice_Import = Functions.GetDataToTable(sql);
+            dgvImportReceipt.DataSource = Invoice_Import;
             dgvImportReceipt.Columns[0].HeaderText = "ID Product";
             dgvImportReceipt.Columns[1].HeaderText = "Product Name";
             dgvImportReceipt.Columns[2].HeaderText = "Number Of Product";
-            dgvImportReceipt.Columns[3].HeaderText = "Unit Cost";
-            dgvImportReceipt.Columns[4].HeaderText = "Total";
-            dgvImportReceipt.Columns[5].HeaderText = "Into Money";
-            dgvImportReceipt.Columns[0].Width = 80;
-            dgvImportReceipt.Columns[1].Width = 130;
-            dgvImportReceipt.Columns[2].Width = 80;
-            dgvImportReceipt.Columns[3].Width = 90;
-            dgvImportReceipt.Columns[4].Width = 90;
-            dgvImportReceipt.Columns[5].Width = 90;
+            dgvImportReceipt.Columns[3].HeaderText = "Unit Cost";    
+            dgvImportReceipt.Columns[4].HeaderText = "Into Money";
+            dgvImportReceipt.Columns[0].Width = 100;
+            dgvImportReceipt.Columns[1].Width = 160;
+            dgvImportReceipt.Columns[2].Width = 130;
+            dgvImportReceipt.Columns[3].Width = 130;
+            dgvImportReceipt.Columns[4].Width = 130;
             dgvImportReceipt.AllowUserToAddRows = false;
             dgvImportReceipt.EditMode = DataGridViewEditMode.EditProgrammatically;
         }
@@ -77,8 +72,7 @@ namespace SupplementFactsproducts
             string str;
             str = "SELECT dateofImport FROM Invoice_Import WHERE id_InvoiceImport = N'" + id_receipt.Text + "'";
             dateImport.Value = DateTime.Parse(Functions.GetFieldValues(str));
-           
-            str = "SELECT id_vendor FROM vendor WHERE MaHDBan = N'" + id_receipt.Text + "'";
+            str = "SELECT id_vendor FROM Invoice_Import WHERE id_InvoiceImport = N'" + id_receipt.Text + "'";
             comboVendor.Text = Functions.GetFieldValues(str);
             str = "SELECT total FROM Invoice_Import WHERE id_InvoiceImport = N'" + id_receipt.Text + "'";
             totalMoney.Text = Functions.GetFieldValues(str);
@@ -109,7 +103,6 @@ namespace SupplementFactsproducts
         {
             comboProduct.Text = "";
             numberOfProduct.Text = "";
-            totalMoney.Text = "0";
             intomoney.Text = "0";
         }
 
@@ -122,13 +115,6 @@ namespace SupplementFactsproducts
             {
                 // Mã hóa đơn chưa có, tiến hành lưu các thông tin chung
                 // Mã HDBan được sinh tự động do đó không có trường hợp trùng khóa
-                /*if (dateImport.Text.Length == 0)
-                {
-                    MessageBox.Show("Bạn phải nhập ngày bán", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dateImport.Focus();
-                    return;
-                }*/
-                
                 if (comboVendor.Text.Length == 0)
                 {
                     MessageBox.Show("Bạn phải nhập nhà cung cấp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -153,12 +139,7 @@ namespace SupplementFactsproducts
                 numberOfProduct.Focus();
                 return;
             }
-            //if (txtGiamGia.Text.Trim().Length == 0)
-            //{
-            //    MessageBox.Show("Bạn phải nhập giảm giá", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    txtGiamGia.Focus();
-            //    return;
-            //}
+           
             sql = "SELECT id_Product FROM Details_Import WHERE id_Product=N'" + comboProduct.SelectedValue + "' AND id_InvoiceImport = N'" + id_receipt.Text.Trim() + "'";
             if (Functions.CheckKey(sql))
             {
@@ -168,19 +149,19 @@ namespace SupplementFactsproducts
                 return;
             }
             // Kiểm tra xem số lượng hàng trong kho còn đủ để cung cấp không?
-            sl = Convert.ToDouble(Functions.GetFieldValues("SELECT numberOf_Product FROM Product WHERE id_Product = N'" + comboProduct.SelectedValue + "'"));
-            if (Convert.ToDouble(numberOfProduct.Text) > sl)
-            {
-                MessageBox.Show("Số lượng mặt hàng này chỉ còn " + sl, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                numberOfProduct.Text = "";
-                numberOfProduct.Focus();
-                return;
-            }
+            sl = Convert.ToDouble(Functions.GetFieldValues("SELECT numberOf_Product FROM Product WHERE id_Product = N'" + comboProduct.SelectedValue + "'").ToString());
+            //if (Convert.ToDouble(numberOfProduct.Text) > sl)
+            //{
+            //    MessageBox.Show("Số lượng mặt hàng này chỉ còn " + sl, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    numberOfProduct.Text = "";
+            //    numberOfProduct.Focus();
+            //    return;
+            //}
             sql = "INSERT INTO Details_Import(id_InvoiceImport,id_Product,numberOf_Product,unitSelling_Price,intomoney) VALUES(N'" + id_receipt.Text.Trim() + "',N'" + comboProduct.SelectedValue + "'," + numberOfProduct.Text + "," + unitCost.Text  + "," + intomoney.Text + ")";
             Functions.RunSQL(sql);
             LoadDataGridView();
             // Cập nhật lại số lượng của mặt hàng vào bảng tblHang
-            SLcon = sl - Convert.ToDouble(numberOfProduct.Text);
+            SLcon = sl + Convert.ToDouble(numberOfProduct.Text);
             sql = "UPDATE Product SET numberOf_Product =" + SLcon + " WHERE id_Product= N'" + comboProduct.SelectedValue + "'";
             Functions.RunSQL(sql);
             // Cập nhật lại tổng tiền cho hóa đơn bán
@@ -207,7 +188,7 @@ namespace SupplementFactsproducts
                     // Cập nhật lại số lượng cho các mặt hàng
                     sl = Convert.ToDouble(Functions.GetFieldValues("SELECT numberOf_Product FROM Product WHERE id_Product = N'" + Product.Rows[hang][0].ToString() + "'"));
                     slxoa = Convert.ToDouble(Product.Rows[hang][1].ToString());
-                    slcon = sl + slxoa;
+                    slcon = sl - slxoa;
                     sql = "UPDATE Product SET numberOf_Product =" + slcon + " WHERE id_Product= N'" + Product.Rows[hang][0].ToString() + "'";
                     Functions.RunSQL(sql);
                 }
@@ -247,9 +228,9 @@ namespace SupplementFactsproducts
                 unitCost.Text = "";
             }
             // Khi chọn mã hàng thì các thông tin về hàng hiện ra
-            str = "SELECT TenHang FROM tblHang WHERE MaHang =N'" + comboProduct.SelectedValue + "'";
+            str = "SELECT name_Product FROM Product WHERE id_Product =N'" + comboProduct.SelectedValue + "'";
             productName.Text = Functions.GetFieldValues(str);
-            str = "SELECT DonGiaBan FROM tblHang WHERE MaHang =N'" + comboProduct.SelectedValue + "'";
+            str = "SELECT unitSelling_Price FROM Product WHERE id_Product =N'" + comboProduct.SelectedValue + "'";
             unitCost.Text = Functions.GetFieldValues(str);
         }
 
@@ -260,7 +241,7 @@ namespace SupplementFactsproducts
             if (numberOfProduct.Text == "")
                 sl = 0;
             else
-                sl = Convert.ToDouble(numberOfProduct.Text);
+                sl = Convert.ToDouble(numberOfProduct.Text.ToString());
            
             if (unitCost.Text == "")
                 dg = 0;
@@ -268,6 +249,11 @@ namespace SupplementFactsproducts
                 dg = Convert.ToDouble(unitCost.Text);
             tt = sl * dg - sl * dg  / 100;
             intomoney.Text = tt.ToString();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

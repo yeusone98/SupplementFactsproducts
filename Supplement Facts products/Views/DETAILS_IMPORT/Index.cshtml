@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Supplement_Facts_products.Models.DETAILS_IMPORT>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_Product)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numberOf_Product)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intomoney)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.importUnit_Price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_Product)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numberOf_Product)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intomoney)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.importUnit_Price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_InvoiceImport }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_InvoiceImport }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_InvoiceImport })
+        </td>
+    </tr>
+}
+
+</table>

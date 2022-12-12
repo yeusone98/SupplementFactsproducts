@@ -1,0 +1,42 @@
+﻿@model Supplement_Facts_products.Models.vendor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>vendor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name_vendor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_vendor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address_vendor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address_vendor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone_vendor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone_vendor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_vendor }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,42 @@
+﻿@model Supplement_Facts_products.Models.CUSTOMER
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CUSTOMER</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name_Customer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_Customer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address_Customer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address_Customer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phoneNumber_Customer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phoneNumber_Customer)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_Customer }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

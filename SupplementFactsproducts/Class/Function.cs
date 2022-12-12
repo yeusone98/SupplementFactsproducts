@@ -6,25 +6,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace SupplementFactsproducts.Class
 {
     class Functions
     {
-        public static SqlConnection Con;  //Khai báo đối tượng kết nối        
-
+        public static SqlConnection Con;
         public static void Connect()
         {
-            Con = new SqlConnection();   //Khởi tạo đối tượng
-            Con.ConnectionString = Properties.Settings.Default.Supplementfacts_Products;
-            //Kiểm tra kết nối
-            if (Con.State != ConnectionState.Open)
-            {
-                Con.Open();
-                MessageBox.Show("Connect Successed");
-            }
-            else MessageBox.Show("Can not connect with database");
-
+            Con = new SqlConnection();
+            Con.ConnectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ToString();
+            //@"Data Source=.\SQLEXPRESS;Integrated Security=True;Connect Timeout=30;User Instance=True"
+            Con.Open();
+            if (Con.State == ConnectionState.Open)
+                MessageBox.Show("Kết nối thành công");
+            else MessageBox.Show("Không thể kết nối với dữ liệu");
         }
         public static void Disconnect()
         {
@@ -96,6 +93,24 @@ namespace SupplementFactsproducts.Class
             cmd.Dispose();//Giải phóng bộ nhớ
             cmd = null;
         }
+
+
+        /*public static string RunSQLString(string sql)
+        {
+            SqlCommand cmd; //Đối tượng thuộc lớp SqlCommand
+            cmd = new SqlCommand();
+            cmd.Connection = Con; //Gán kết nối
+            cmd.CommandText = sql; //Gán lệnh SQL
+            cmd.ExecuteNonQuery(); //Thực hiện câu lệnh SQL
+                SqlDataReader dr=cmd.ExecuteReader();
+              
+          
+            cmd.Dispose();//Giải phóng bộ nhớ
+            cmd = null;
+
+            return dr["total"].ToString();
+        }
+        */
         public static void RunSqlDel(string sql)
         {
             SqlCommand cmd = new SqlCommand();

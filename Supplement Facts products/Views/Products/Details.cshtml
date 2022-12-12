@@ -1,0 +1,56 @@
+﻿@model Supplement_Facts_products.Models.Product
+
+@{
+    ViewBag.Title = "Details Of Product";
+}
+
+
+<div>
+    <h4>Details Of Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Product Name:
+        </dt>
+
+        <dd>
+           @Html.DisplayFor(model => model.name_Product)
+        </dd>
+
+        <dt>
+           Number of Product:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOf_Product)
+        </dd>
+        <dt>
+            Price:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unitSelling_Price) VNĐ
+        </dd>
+
+        <dt>
+            Image:
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.Image)" width="150" height="150"/>
+        </dd>
+
+        <dt>
+            Note:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_Product }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

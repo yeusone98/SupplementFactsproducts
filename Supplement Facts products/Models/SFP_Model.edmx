@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SFP_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="id_Customer" />
+          </Key>
+          <Property Name="id_Customer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name_Customer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="address_Customer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phoneNumber_Customer" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETAILS_IMPORT">
+          <Key>
+            <PropertyRef Name="id_InvoiceImport" />
+          </Key>
+          <Property Name="id_InvoiceImport" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_Product" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="numberOf_Product" Type="float" Nullable="false" />
+          <Property Name="intomoney" Type="float" />
+          <Property Name="importUnit_Price" Type="float" />
+        </EntityType>
+        <EntityType Name="INVOICE">
+          <Key>
+            <PropertyRef Name="id_Invoice" />
+          </Key>
+          <Property Name="id_Invoice" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateOfSale" Type="datetime" Nullable="false" />
+          <Property Name="id_Customer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="total" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invoice_Import">
+          <Key>
+            <PropertyRef Name="id_InvoiceImport" />
+          </Key>
+          <Property Name="id_InvoiceImport" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_vendor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateofImport" Type="datetime" Nullable="false" />
+          <Property Name="total" Type="float" />
+        </EntityType>
+        <EntityType Name="Invoice_Sale">
+          <Key>
+            <PropertyRef Name="id_Invoice" />
+          </Key>
+          <Property Name="id_Invoice" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateOfSale" Type="datetime" Nullable="false" />
+          <Property Name="id_Customer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="total" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id_Product" />
+          </Key>
+          <Property Name="id_Product" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name_Product" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="numberOf_Product" Type="float" Nullable="false" />
+          <Property Name="importUnit_Price" Type="float" Nullable="false" />
+          <Property Name="unitSelling_Price" Type="float" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="vendor">
+          <Key>
+            <PropertyRef Name="id_vendor" />
+          </Key>
+          <Property Name="id_vendor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name_vendor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="address_vendor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone_vendor" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SFP_ModelStoreContainer">
+          <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETAILS_IMPORT" EntityType="Self.DETAILS_IMPORT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INVOICE" EntityType="Self.INVOICE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice_Import" EntityType="Self.Invoice_Import" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice_Sale" EntityType="Self.Invoice_Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vendor" EntityType="Self.vendor" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SFP_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="id_Customer" />
+          </Key>
+          <Property Name="id_Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address_Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phoneNumber_Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETAILS_IMPORT">
+          <Key>
+            <PropertyRef Name="id_InvoiceImport" />
+          </Key>
+          <Property Name="id_InvoiceImport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_Product" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="numberOf_Product" Type="Double" Nullable="false" />
+          <Property Name="intomoney" Type="Double" />
+          <Property Name="importUnit_Price" Type="Double" />
+        </EntityType>
+        <EntityType Name="INVOICE">
+          <Key>
+            <PropertyRef Name="id_Invoice" />
+          </Key>
+          <Property Name="id_Invoice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dateOfSale" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="total" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invoice_Import">
+          <Key>
+            <PropertyRef Name="id_InvoiceImport" />
+          </Key>
+          <Property Name="id_InvoiceImport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dateofImport" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="total" Type="Double" />
+        </EntityType>
+        <EntityType Name="Invoice_Sale">
+          <Key>
+            <PropertyRef Name="id_Invoice" />
+          </Key>
+          <Property Name="id_Invoice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dateOfSale" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="total" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id_Product" />
+          </Key>
+          <Property Name="id_Product" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_Product" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="numberOf_Product" Type="Double" Nullable="false" />
+          <Property Name="importUnit_Price" Type="Double" Nullable="false" />
+          <Property Name="unitSelling_Price" Type="Double" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vendor">
+          <Key>
+            <PropertyRef Name="id_vendor" />
+          </Key>
+          <Property Name="id_vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address_vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone_vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SFP_Conncetion" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
+          <EntitySet Name="DETAILS_IMPORT" EntityType="Self.DETAILS_IMPORT" />
+          <EntitySet Name="INVOICEs" EntityType="Self.INVOICE" />
+          <EntitySet Name="Invoice_Import" EntityType="Self.Invoice_Import" />
+          <EntitySet Name="Invoice_Sale" EntityType="Self.Invoice_Sale" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="vendors" EntityType="Self.vendor" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SFP_ModelStoreContainer" CdmEntityContainer="SFP_Conncetion">
+          <EntitySetMapping Name="CUSTOMERs">
+            <EntityTypeMapping TypeName="SFP_Model.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="id_Customer" ColumnName="id_Customer" />
+                <ScalarProperty Name="name_Customer" ColumnName="name_Customer" />
+                <ScalarProperty Name="address_Customer" ColumnName="address_Customer" />
+                <ScalarProperty Name="phoneNumber_Customer" ColumnName="phoneNumber_Customer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETAILS_IMPORT">
+            <EntityTypeMapping TypeName="SFP_Model.DETAILS_IMPORT">
+              <MappingFragment StoreEntitySet="DETAILS_IMPORT">
+                <ScalarProperty Name="id_InvoiceImport" ColumnName="id_InvoiceImport" />
+                <ScalarProperty Name="id_Product" ColumnName="id_Product" />
+                <ScalarProperty Name="numberOf_Product" ColumnName="numberOf_Product" />
+                <ScalarProperty Name="intomoney" ColumnName="intomoney" />
+                <ScalarProperty Name="importUnit_Price" ColumnName="importUnit_Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INVOICEs">
+            <EntityTypeMapping TypeName="SFP_Model.INVOICE">
+              <MappingFragment StoreEntitySet="INVOICE">
+                <ScalarProperty Name="id_Invoice" ColumnName="id_Invoice" />
+                <ScalarProperty Name="dateOfSale" ColumnName="dateOfSale" />
+                <ScalarProperty Name="id_Customer" ColumnName="id_Customer" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoice_Import">
+            <EntityTypeMapping TypeName="SFP_Model.Invoice_Import">
+              <MappingFragment StoreEntitySet="Invoice_Import">
+                <ScalarProperty Name="id_InvoiceImport" ColumnName="id_InvoiceImport" />
+                <ScalarProperty Name="id_vendor" ColumnName="id_vendor" />
+                <ScalarProperty Name="dateofImport" ColumnName="dateofImport" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoice_Sale">
+            <EntityTypeMapping TypeName="SFP_Model.Invoice_Sale">
+              <MappingFragment StoreEntitySet="Invoice_Sale">
+                <ScalarProperty Name="id_Invoice" ColumnName="id_Invoice" />
+                <ScalarProperty Name="dateOfSale" ColumnName="dateOfSale" />
+                <ScalarProperty Name="id_Customer" ColumnName="id_Customer" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="SFP_Model.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="id_Product" ColumnName="id_Product" />
+                <ScalarProperty Name="name_Product" ColumnName="name_Product" />
+                <ScalarProperty Name="numberOf_Product" ColumnName="numberOf_Product" />
+                <ScalarProperty Name="importUnit_Price" ColumnName="importUnit_Price" />
+                <ScalarProperty Name="unitSelling_Price" ColumnName="unitSelling_Price" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vendors">
+            <EntityTypeMapping TypeName="SFP_Model.vendor">
+              <MappingFragment StoreEntitySet="vendor">
+                <ScalarProperty Name="id_vendor" ColumnName="id_vendor" />
+                <ScalarProperty Name="name_vendor" ColumnName="name_vendor" />
+                <ScalarProperty Name="address_vendor" ColumnName="address_vendor" />
+                <ScalarProperty Name="phone_vendor" ColumnName="phone_vendor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
